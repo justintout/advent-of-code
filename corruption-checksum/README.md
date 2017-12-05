@@ -1,4 +1,13 @@
-# Challenge text
+#Day 2 -  Corrupton Checksum
+
+## Installation and usage 
+## Installation and use
+1. Clone repo
+2. Copy your [puzzle input](http://adventofcode.com/2017/day/1/input) to an ASCII text fle
+3. ```go build```
+4. Run either ```corruption-checksum [input file]``` on OS X/Linux or ```corruption-checksum.exe [input file]``` on Windows
+
+## Challenge text
 ```
 --- Day 2: Corruption Checksum ---
 
@@ -20,8 +29,6 @@ What is the checksum for the spreadsheet in your puzzle input?
 
 Your puzzle answer was 39126.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 --- Part Two ---
 
 "Great work; looks like we're on the right track after all. Here's a star for your effort." However, the program seems a little worried. Can programs be worried?
@@ -42,4 +49,13 @@ In this example, the sum of the results would be 4 + 3 + 2 = 9.
 
 What is the sum of each row's result in your puzzle input?
 
-Although it hasn't changed, you can still get your puzzle input.
+Your puzzle answer was 258.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
+
+At this point, you should return to your advent calendar and try another puzzle.
+
+If you still want to see it, you can get your puzzle input.
+
+You can also [Share] this puzzle.
+```
