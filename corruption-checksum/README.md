@@ -1,6 +1,5 @@
-#Day 2 -  Corrupton Checksum
+# Day 2 -  Corrupton Checksum
 
-## Installation and usage 
 ## Installation and use
 1. Clone repo
 2. Copy your [puzzle input](http://adventofcode.com/2017/day/1/input) to an ASCII text fle
