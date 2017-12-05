@@ -2,7 +2,7 @@
 
 ## Installation and use
 1. Clone repo
-2. Copy your [puzzle input](http://adventofcode.com/2017/day/1/input) to an ASCII text fle
+2. Copy your [puzzle input](http://adventofcode.com/2017/day/2/input) to an ASCII text fle
 3. ```go build```
 4. Run either ```corruption-checksum [input file]``` on OS X/Linux or ```corruption-checksum.exe [input file]``` on Windows
 
