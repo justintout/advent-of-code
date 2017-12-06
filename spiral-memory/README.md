@@ -1,6 +1,7 @@
 # Day 3: Spiral Memory
 
-## Challenge text 
+## Part 1
+### Challenge text
 ```
 --- Day 3: Spiral Memory ---
 
@@ -30,3 +31,11 @@ Answer:
 
 You can also [Share] this puzzle.
 ```
+## Notes
+- "rings" moving out, start at 1
+-- incerasing odd squares
+-- `k = (2r - 1)^2 for r = # ring`
+- side length = increasing odds 
+-- `l = (2r - 1) for r = # ring`
+- shortest dist will always be right triangle 
+-- min dist to middle of side + # ring
