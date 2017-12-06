@@ -75,7 +75,6 @@ func partTwo(data [][]string) int {
 	prods := make(chan int)
 	var wg sync.WaitGroup
 	for _, row := range data {
-		// fmt.Println(row)
 		go divideRow(prods, &wg, row)
 		wg.Add(1)
 	}
