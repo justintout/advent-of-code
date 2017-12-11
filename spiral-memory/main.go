@@ -165,7 +165,6 @@ func (s spiral) generateUntil(input int) int {
 		p = p.ahead(d)
 		v := s.sumNeigbors(p)
 		s[p] = v
-		fmt.Printf("(%d, %d) = %d, %s\n", p.x, p.y, v, d)
 	}
 	return s[p]
 }
@@ -175,7 +174,6 @@ func (s spiral) sumNeigbors(p point) int {
 	for _, n := range p.neighbors() {
 		v, ok := s[n]
 		if ok {
-			fmt.Printf("  (%d, %d) = %d\n", n.x, n.y, v)
 			t += v
 		}
 	}
