@@ -8,8 +8,6 @@ import (
 	"strconv"
 )
 
-const input = 325489
-
 const (
 	RIGHT = iota
 	TOP
@@ -97,7 +95,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("input must be an integer\n")
 	}
-	fmt.Printf("DISTANCE TO ORIGIN: %d", partOne(input))
+	fmt.Printf("DISTANCE TO ORIGIN: %d\n", partOne(input))
+	fmt.Printf("NEXT VALUE: %d\n", partTwo(input))
 }
 
 func partOne(input int) int {
@@ -109,6 +108,118 @@ func partOne(input int) int {
 		r = newRing(i)
 	}
 	return r.distToOrigin(input)
+}
+
+func partTwo(input int) int {
+	s := newSpiral()
+	return s.generateUntil(input)
+}
+
+type spiral map[point]int
+
+type direction byte
+
+const (
+	EAST direction = iota
+	NORTH
+	WEST
+	SOUTH
+)
+
+func (d direction) String() string {
+	s := ""
+	switch d {
+	case EAST:
+		s = "east"
+	case NORTH:
+		s = "north"
+	case WEST:
+		s = "west"
+	case SOUTH:
+		s = "south"
+	}
+	return s
+}
+
+func newSpiral() spiral {
+	m := map[point]int{
+		point{0, 0}: 1,
+	}
+	s := spiral(m)
+	return s
+}
+
+// strategy: we start a spiral with the center filled. we know the next is 0,1 = 1, so this is the starting condition.
+// from there, we peek ahead to the left. if it already has a value we continue ahead. if it doesnt, we turn left and continue.
+// at each step, we sum the neighbor values and set the current equal to this sum. we return the most recent value added. this
+// will be the first value greater than or equal to the input.
+func (s spiral) generateUntil(input int) int {
+	p := point{1, 0}
+	d := EAST
+	s[p] = 1
+	for i := 1; s[p] <= input; i++ {
+		_, ok := s[p.ahead(turnLeft(d))]
+		if !ok {
+			d = turnLeft(d)
+		}
+		p = p.ahead(d)
+		v := s.sumNeigbors(p)
+		s[p] = v
+		fmt.Printf("(%d, %d) = %d, %s\n", p.x, p.y, v, d)
+	}
+	return s[p]
+}
+
+func (s spiral) sumNeigbors(p point) int {
+	t := 0
+	for _, n := range p.neighbors() {
+		v, ok := s[n]
+		if ok {
+			fmt.Printf("  (%d, %d) = %d\n", n.x, n.y, v)
+			t += v
+		}
+	}
+	return t
+
+}
+
+func turnLeft(d direction) direction {
+	switch d {
+	case EAST:
+		return NORTH
+	case NORTH:
+		return WEST
+	case WEST:
+		return SOUTH
+	}
+	return EAST
+}
+
+type point struct {
+	x, y int
+}
+
+func (p point) neighbors() []point {
+	return []point{point{p.x - 1, p.y}, point{p.x - 1, p.y - 1}, point{p.x - 1, p.y + 1}, point{p.x, p.y + 1}, point{p.x, p.y - 1}, point{p.x + 1, p.y}, point{p.x + 1, p.y - 1}, point{p.x + 1, p.y + 1}}
+}
+
+func (p point) ahead(d direction) point {
+	var a point
+	switch d {
+	case EAST:
+		a.x = p.x + 1
+		a.y = p.y
+	case NORTH:
+		a.x = p.x
+		a.y = p.y + 1
+	case WEST:
+		a.x = p.x - 1
+		a.y = p.y
+	case SOUTH:
+		a.x = p.x
+		a.y = p.y - 1
+	}
+	return a
 }
 
 func within(n, l, u int) bool {
